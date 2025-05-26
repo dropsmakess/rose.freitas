@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rose Freitas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #4b0082;
+    }
+
+    header {
+      background-color: #4b0082;
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 48px;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #eee;
+      padding: 15px;
+      gap: 20px;
+    }
+
+    nav button {
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      padding: 20px 40px;
+      cursor: pointer;
+      border-radius: 12px;
+      font-size: 20px;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    nav button:hover {
+      transform: scale(1.05);
+    }
+
+    section {
+      padding: 30px;
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .product {
+      margin: 15px;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .product img {
+      width: 200px;
+      height: 250px;
+      object-fit: cover;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+    }
+
+    .bts-banner {
+      width: 100%;
+      height: auto;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Rose Freitas</h1>
+    <img src="https://i.pinimg.com/originals/30/83/64/308364d300a8f42e4f6f5a0ec76595e4.jpg" alt="BTS Banner" class="bts-banner">
+  </header>
+
+  <section id="roupas" class="active">
+    <h2>Roupas</h2>
+    <div class="product" onclick="showSection('roupas')">
+      <img src="https://via.placeholder.com/200x250?text=Camiseta+1" alt="Camiseta BTS">
+      <p>Camiseta BTS</p>
+    </div>
+    <div class="product" onclick="showSection('roupas')">
+      <img src="https://via.placeholder.com/200x250?text=Moletom+BTS" alt="Moletom BTS">
+      <p>Moletom BTS</p>
+    </div>
+  </section>
+
+  <section id="acessorios">
+    <h2>Acessórios</h2>
+    <div class="product" onclick="showSection('acessorios')">
+      <img src="https://via.placeholder.com/200x250?text=Pulseira+BTS" alt="Pulseira BTS">
+      <p>Pulseira BTS</p>
+    </div>
+    <div class="product" onclick="showSection('acessorios')">
+      <img src="https://via.placeholder.com/200x250?text=Boné+BTS" alt="Boné BTS">
+      <p>Boné BTS</p>
+    </div>
+  </section>
+
+  <a class="whatsapp-button" href="https://wa.me/5599999999999" target="_blank">
+    Fale conosco no WhatsApp
+  </a>
+
+  <footer>
+    <p>&copy; 2025 Rose Freitas. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
