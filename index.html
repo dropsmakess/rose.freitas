@@ -2,151 +2,219 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rose Freitas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #4b0082;
-    }
-
-    header {
-      background-color: #4b0082;
-      color: white;
-      text-align: center;
-      padding: 30px 0;
-    }
-
-    header h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 48px;
-      margin: 0;
-    }
-
-    nav {
-      display: flex;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rose Freitas</title>
+<style>
+  :root {
+    --roxo: #6a0dad;
+    --branco: #fff;
+    --roxo-claro: #9b4dca;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--branco);
+    color: var(--roxo);
+  }
+  header {
+    background: var(--roxo);
+    color: var(--branco);
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    gap: 15px;
+  }
+  /* Logo personalizada em SVG */
+  .logo {
+    width: 50px;
+    height: 50px;
+    fill: var(--branco);
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    flex-grow: 1;
+    font-weight: 700;
+    user-select: none;
+  }
+  nav {
+    background: var(--roxo-claro);
+    padding: 10px 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  nav button {
+    background: var(--branco);
+    color: var(--roxo);
+    border: none;
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  nav button:hover, nav button.active {
+    background: var(--roxo);
+    color: var(--branco);
+  }
+  main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 15px;
+  }
+  .aba {
+    display: none;
+  }
+  .aba.active {
+    display: block;
+  }
+  .produtos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .produto {
+    width: 180px;
+    border: 2px solid var(--roxo-claro);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    background: var(--branco);
+  }
+  .produto:hover {
+    box-shadow: 0 0 12px var(--roxo-claro);
+  }
+  .produto img {
+    width: 100%;
+    display: block;
+  }
+  .produto p {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: 600;
+    color: var(--roxo);
+  }
+  /* Botão WhatsApp fixo no canto inferior direito */
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 1000;
+  }
+  .whatsapp-btn:hover {
+    background: #1ebe57;
+  }
+  .whatsapp-btn svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+  }
+  /* Responsivo */
+  @media(max-width: 480px) {
+    .produtos {
       justify-content: center;
-      background-color: #eee;
-      padding: 15px;
-      gap: 20px;
     }
-
-    nav button {
-      background-color: #4b0082;
-      color: white;
-      border: none;
-      padding: 20px 40px;
-      cursor: pointer;
-      border-radius: 12px;
-      font-size: 20px;
-      font-weight: bold;
-      transition: transform 0.2s;
+    .produto {
+      width: 140px;
     }
-
-    nav button:hover {
-      transform: scale(1.05);
+    h1 {
+      font-size: 1.8rem;
     }
-
-    section {
-      padding: 30px;
-      display: none;
-    }
-
-    section.active {
-      display: block;
-    }
-
-    .product {
-      margin: 15px;
-      display: inline-block;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .product img {
-      width: 200px;
-      height: 250px;
-      object-fit: cover;
-      border: 2px solid #4b0082;
-      border-radius: 10px;
-    }
-
-    .bts-banner {
-      width: 100%;
-      height: auto;
-      margin-top: 10px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      margin-top: 30px;
-    }
-
-    .whatsapp-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Rose Freitas</h1>
-    <img src="https://i.pinimg.com/originals/30/83/64/308364d300a8f42e4f6f5a0ec76595e4.jpg" alt="BTS Banner" class="bts-banner">
-  </header>
+<header>
+  <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Rose Freitas">
+    <circle cx="32" cy="32" r="30" stroke="white" stroke-width="3" fill="none"/>
+    <text x="32" y="40" text-anchor="middle" font-size="28" font-family="Segoe UI" fill="white" font-weight="700">RF</text>
+  </svg>
+  <h1>Rose Freitas</h1>
+</header>
 
-  <section id="roupas" class="active">
-    <h2>Roupas</h2>
-    <div class="product" onclick="showSection('roupas')">
-      <img src="https://via.placeholder.com/200x250?text=Camiseta+1" alt="Camiseta BTS">
-      <p>Camiseta BTS</p>
-    </div>
-    <div class="product" onclick="showSection('roupas')">
-      <img src="https://via.placeholder.com/200x250?text=Moletom+BTS" alt="Moletom BTS">
-      <p>Moletom BTS</p>
+<nav>
+  <button class="active" data-target="roupas">Roupas</button>
+  <button data-target="acessorios">Acessórios</button>
+</nav>
+
+<main>
+  <section id="roupas" class="aba active">
+    <div class="produtos">
+      <div class="produto" onclick="alert('Você clicou em Jaqueta BTS')">
+        <img src="https://i.imgur.com/ZUOmQ7z.jpg" alt="Jaqueta BTS" />
+        <p>Jaqueta BTS</p>
+      </div>
+      <div class="produto" onclick="alert('Você clicou em Camiseta BTS')">
+        <img src="https://i.imgur.com/gQyK3XT.jpg" alt="Camiseta BTS" />
+        <p>Camiseta BTS</p>
+      </div>
+      <div class="produto" onclick="alert('Você clicou em Moletom BTS')">
+        <img src="https://i.imgur.com/tD9Y3vR.jpg" alt="Moletom BTS" />
+        <p>Moletom BTS</p>
+      </div>
     </div>
   </section>
-
-  <section id="acessorios">
-    <h2>Acessórios</h2>
-    <div class="product" onclick="showSection('acessorios')">
-      <img src="https://via.placeholder.com/200x250?text=Pulseira+BTS" alt="Pulseira BTS">
-      <p>Pulseira BTS</p>
-    </div>
-    <div class="product" onclick="showSection('acessorios')">
-      <img src="https://via.placeholder.com/200x250?text=Boné+BTS" alt="Boné BTS">
-      <p>Boné BTS</p>
+  <section id="acessorios" class="aba">
+    <div class="produtos">
+      <div class="produto" onclick="alert('Você clicou em Boné BTS')">
+        <img src="https://i.imgur.com/7Mq0h8P.jpg" alt="Boné BTS" />
+        <p>Boné BTS</p>
+      </div>
+      <div class="produto" onclick="alert('Você clicou em Chaveiro BTS')">
+        <img src="https://i.imgur.com/5tP7U7y.jpg" alt="Chaveiro BTS" />
+        <p>Chaveiro BTS</p>
+      </div>
+      <div class="produto" onclick="alert('Você clicou em Mochila BTS')">
+        <img src="https://i.imgur.com/Z0tGQ6z.jpg" alt="Mochila BTS" />
+        <p>Mochila BTS</p>
+      </div>
     </div>
   </section>
+</main>
 
-  <a class="whatsapp-button" href="https://wa.me/5599999999999" target="_blank">
-    Fale conosco no WhatsApp
-  </a>
+<!-- Botão WhatsApp -->
+<a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M20.52 3.48A11.37 11.37 0 0012 0C5.373 0 0 5.373 0 12a11.37 11.37 0 003.48 8.52L0 24l3.48-1.12A11.37 11.37 0 0012 24c6.627 0 12-5.373 12-12a11.37 11.37 0 00-3.48-8.52zm-8.21 17.61c-2.19 0-4.08-.8-5.56-2.16l-.4-.36-3.3.98 1.04-3.22-.27-.42a8.3 8.3 0 01-1.26-4.68c0-4.6 3.74-8.34 8.34-8.34 2.22 0 4.31.87 5.88 2.45a8.254 8.254 0 012.44 5.88c0 4.6-3.74 8.34-8.34 8.34zm4.54-6.14c-.25-.13-1.48-.73-1.7-.82-.22-.1-.38-.13-.54.13-.16.25-.63.82-.77.98-.14.16-.28.18-.53.06-.25-.13-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.015-.38.11-.51.11-.11.25-.28.37-.42.13-.14.17-.25.25-.41.08-.16.04-.3-.02-.42-.06-.13-.54-1.3-.74-1.78-.19-.46-.38-.4-.53-.4-.14 0-.3-.02-.46-.02-.16 0-.42.06-.64.3-.22.25-.84.82-.84 2 0 1.18.86 2.32.98 2.48.13.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.15 1.53.09.47-.07 1.48-.6 1.69-1.18.21-.58.21-1.08.15-1.18-.07-.09-.25-.14-.54-.25z"/>
+  </svg>
+</a>
 
-  <footer>
-    <p>&copy; 2025 Rose Freitas. Todos os direitos reservados.</p>
-  </footer>
+<script>
+  // Script para alternar abas ao clicar nos botões
+  const buttons = document.querySelectorAll('nav button');
+  const abas = document.querySelectorAll('.aba');
 
-  <script>
-    function showSection(sectionId) {
-      document.querySelectorAll('section').forEach(section => {
-        section.classList.remove('active');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const target = btn.getAttribute('data-target');
+      abas.forEach(aba => {
+        aba.classList.toggle('active', aba.id === target);
       });
-      document.getElementById(sectionId).classList.add('active');
-    }
-  </script>
+    });
+  });
+</script>
+
 </body>
 </html>
