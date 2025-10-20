@@ -38,11 +38,23 @@ section h2{font-size:2rem;color:var(--roxo);margin-bottom:20px;}
 footer{background:#111;padding:20px;text-align:center;margin-top:40px;font-size:0.9rem;}
 .whatsapp{position:fixed;bottom:20px;right:20px;background:#25d366;color:#fff;padding:15px;border-radius:50%;font-size:1.5rem;z-index:1000;text-decoration:none;}
 .hidden{display:none;}
-.container{max-width:600px;margin:50px auto;padding:20px;background:var(--cinza);border-radius:10px;}
+.container{max-width:600px;margin:50px auto;padding:20px;background:var(--cinza);border-radius:10px;z-index:2000;position:relative;}
+#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:1000;display:flex;justify-content:center;align-items:center;}
 input, select{width:100%;padding:10px;margin:10px 0;border-radius:5px;border:none;}
 </style>
 </head>
 <body>
+
+<!-- Overlay Login Obrigatório -->
+<div id="overlay">
+  <div class="container" id="loginDiv">
+    <h2>Moda Mirae - Login</h2>
+    <input type="text" id="username" placeholder="Usuário">
+    <input type="password" id="password" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+    <p id="loginMsg" style="color:red;"></p>
+  </div>
+</div>
 
 <header><h1>Moda Mirae</h1></header>
 
@@ -71,7 +83,6 @@ input, select{width:100%;padding:10px;margin:10px 0;border-radius:5px;border:non
   <p>Peças únicas e temáticas, perfeitas para expressar seu estilo ou presentear alguém especial.</p>
 </div>
 
-<!-- Seções -->
 <section id="inicio">
 <h2>Vitrine de Produtos Mais Vendidos</h2>
 <div class="produtos-container" id="mainProducts"></div>
@@ -107,7 +118,7 @@ input, select{width:100%;padding:10px;margin:10px 0;border-radius:5px;border:non
 
 <section id="contato">
 <h2>📲 Contato</h2>
-<p>WhatsApp: <a href="https://wa.me/559999999999" class="btn">Fale Conosco</a></p>
+<p>WhatsApp: <a href="https://wa.me/553186098752" class="btn">Fale Conosco</a></p>
 <p>E-mail: contato@modamirae.com.br</p>
 <p>Horário: Seg-Sex 09:00 - 18:00</p>
 <p>Local: São Paulo, SP</p>
@@ -128,15 +139,7 @@ input, select{width:100%;padding:10px;margin:10px 0;border-radius:5px;border:non
 
 <a href="https://wa.me/553186098752" class="whatsapp" target="_blank">📲</a>
 
-<!-- Login/Admin -->
-<div class="container" id="loginDiv">
-<h2>Admin Login</h2>
-<input type="text" id="username" placeholder="Usuário">
-<input type="password" id="password" placeholder="Senha">
-<button onclick="login()">Entrar</button>
-<p id="loginMsg" style="color:red;"></p>
-</div>
-
+<!-- Painel Admin -->
 <div class="container hidden" id="adminDiv">
 <h2>Painel Administrativo</h2>
 
@@ -163,28 +166,36 @@ input, select{width:100%;padding:10px;margin:10px 0;border-radius:5px;border:non
 // Admin fixo
 const adminUser = { username: "admin", password: "123456" };
 
-// Login
+// Login obrigatório
 function login(){
   const u=document.getElementById("username").value;
   const p=document.getElementById("password").value;
   if(u===adminUser.username && p===adminUser.password){
-    document.getElementById("loginDiv").classList.add("hidden");
+    document.getElementById("overlay").style.display="none";
     document.getElementById("adminDiv").classList.remove("hidden");
     loadCategories();
     loadProducts();
-  }else document.getElementById("loginMsg").innerText="Usuário ou senha incorretos!";
+  }else{
+    document.getElementById("loginMsg").innerText="Usuário ou senha incorretos!";
+  }
 }
+
 function logout(){
-  document.getElementById("loginDiv").classList.remove("hidden");
+  document.getElementById("overlay").style.display="flex";
   document.getElementById("adminDiv").classList.add("hidden");
 }
 
-// LocalStorage helpers
-let categories = JSON.parse(localStorage.getItem("categories")||"[]");
-let products = JSON.parse(localStorage.getItem("products")||"[]");
+// LocalStorage
+let categories = JSON.parse(localStorage.getItem("categories")||'["Camisas","Almofadas","Coleções","Promoções"]');
+let products = JSON.parse(localStorage.getItem("products")||`[
+{"name":"Camisa BTS","desc":"Estampa exclusiva BTS","price":"99,90","category":"Camisas","img":"https://via.placeholder.com/150?text=Camisa+BTS"},
+{"name":"Almofada Natal","desc":"Perfeita para o Natal","price":"49,90","category":"Almofadas","img":"https://via.placeholder.com/150?text=Almofada+Natal"},
+{"name":"Coleção Especial","desc":"Edição limitada","price":"129,90","category":"Coleções","img":"https://via.placeholder.com/150?text=Coleção+Especial"},
+{"name":"Camisa Oversized","desc":"Conforto e estilo","price":"79,90","category":"Camisas","img":"https://via.placeholder.com/150?text=Camisa+Oversized"}
+]`);
 
-// Adicionar categoria
-function addCategory(){
+// Categorias
+function addCategory(){ 
   const cat=document.getElementById("newCategory").value.trim();
   if(cat){ categories.push(cat); localStorage.setItem("categories",JSON.stringify(categories)); renderCategories(); document.getElementById("newCategory").value=""; }
 }
@@ -199,28 +210,26 @@ function renderCategories(){
   });
 }
 
-// Adicionar produto
+// Produtos
 function addProduct(){
   const name=document.getElementById("productName").value.trim();
   const desc=document.getElementById("productDesc").value.trim();
   const price=document.getElementById("productPrice").value.trim();
   const cat=document.getElementById("productCategory").value;
   const imgFile=document.getElementById("productImage").files[0];
-  if(name && desc && price && cat && imgFile){
-    const reader=new FileReader();
-    reader.onload=function(e){
-      const product={name,desc,price,category:cat,img:e.target.result};
-      products.push(product);
-      localStorage.setItem("products",JSON.stringify(products));
-      renderProducts();
-      document.getElementById("productName").value="";
-      document.getElementById("productDesc").value="";
-      document.getElementById("productPrice").value="";
-      document.getElementById("productCategory").value="";
-      document.getElementById("productImage").value="";
+  if(name && desc && price && cat){
+    if(imgFile){
+      const reader=new FileReader();
+      reader.onload=function(e){
+        const product={name,desc,price,category:cat,img:e.target.result};
+        products.push(product); localStorage.setItem("products",JSON.stringify(products));
+        renderProducts();
+      }
+      reader.readAsDataURL(imgFile);
+    } else {
+      alert("Selecione uma imagem!");
     }
-    reader.readAsDataURL(imgFile);
-  }else alert("Preencha todos os campos!");
+  } else alert("Preencha todos os campos!");
 }
 
 function renderProducts(){
@@ -234,7 +243,6 @@ function renderProducts(){
   displayProducts();
 }
 
-// Mostrar produtos nas seções
 function displayProducts(){
   const main = document.getElementById("mainProducts");
   const camisas = document.getElementById("camisasContainer");
@@ -245,19 +253,18 @@ function displayProducts(){
   products.forEach(p=>{
     const div=document.createElement("div"); div.className="card";
     div.innerHTML=`<strong>${p.name}</strong><p>${p.desc}</p><p>R$${p.price}</p><img src="${p.img}">`;
+    main.appendChild(div.cloneNode(true));
     if(p.category.toLowerCase().includes("camisa")) camisas.appendChild(div.cloneNode(true));
     else if(p.category.toLowerCase().includes("almofada")) almofadas.appendChild(div.cloneNode(true));
     else if(p.category.toLowerCase().includes("coleção")||p.category.toLowerCase().includes("especial")) colecoes.appendChild(div.cloneNode(true));
     else if(p.category.toLowerCase().includes("promoção")||p.category.toLowerCase().includes("promo")) promo.appendChild(div.cloneNode(true));
-    main.appendChild(div.cloneNode(true));
   });
 }
 
-// Carregar dados do LocalStorage ao iniciar
-function loadCategories(){ renderCategories(); }
-function loadProducts(){ renderProducts(); }
-displayProducts();
+// Inicial
+renderCategories();
+renderProducts();
 </script>
-
 </body>
 </html>
+
