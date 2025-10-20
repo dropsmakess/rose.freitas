@@ -1,315 +1,263 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moda Mirae</title>
-  <style>
-    /* Paleta de cores */
-    :root {
-      --cor-primaria: #6a0dad; /* Roxo */
-      --cor-secundaria: #000000; /* Preto */
-      --cor-texto: #ffffff; /* Branco */
-      --cor-hover: #8b2be2;
-      --cor-banner: #2b2b2b;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: var(--cor-secundaria);
-      color: var(--cor-texto);
-    }
-
-    /* Header */
-    header {
-      background-color: var(--cor-primaria);
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-    }
-
-    /* Menu */
-    nav {
-      background-color: #1a1a1a;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    nav ul li {
-      position: relative;
-    }
-
-    nav ul li a {
-      display: block;
-      padding: 15px 20px;
-      color: var(--cor-texto);
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover {
-      background-color: var(--cor-hover);
-    }
-
-    /* Dropdown */
-    nav ul li ul {
-      display: none;
-      position: absolute;
-      top: 50px;
-      left: 0;
-      background-color: #1a1a1a;
-      min-width: 200px;
-      z-index: 1000;
-    }
-
-    nav ul li:hover ul {
-      display: block;
-    }
-
-    nav ul li ul li a {
-      padding: 10px 20px;
-    }
-
-    /* Banner principal */
-    .banner {
-      background-color: var(--cor-banner);
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .banner h2 {
-      font-size: 2.5rem;
-      color: var(--cor-primaria);
-      margin-bottom: 20px;
-    }
-
-    .banner p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    /* Seções */
-    section {
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    section h2 {
-      font-size: 2rem;
-      color: var(--cor-primaria);
-      margin-bottom: 20px;
-    }
-
-    .produtos-container, .categoria-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .card {
-      background-color: #2b2b2b;
-      padding: 20px;
-      border-radius: 10px;
-      transition: transform 0.3s, background-color 0.3s;
-    }
-
-    .card:hover {
-      background-color: var(--cor-primaria);
-      transform: translateY(-5px);
-    }
-
-    .card h3 {
-      margin: 0;
-      font-size: 1.2rem;
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      margin-top: 10px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top: 15px;
-      background-color: var(--cor-primaria);
-      color: var(--cor-texto);
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background-color: var(--cor-hover);
-    }
-
-    /* Footer */
-    footer {
-      background-color: #111;
-      padding: 20px;
-      text-align: center;
-      margin-top: 40px;
-      font-size: 0.9rem;
-    }
-
-    /* WhatsApp fixo */
-    .whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
-      color: #fff;
-      padding: 15px;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      z-index: 1000;
-      text-decoration: none;
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moda Mirae</title>
+<style>
+:root {
+  --roxo: #6a0dad;
+  --roxo-hover: #8b2be2;
+  --preto: #000;
+  --cinza: #1a1a1a;
+  --cinza-claro: #2b2b2b;
+  --branco: #fff;
+}
+body{margin:0;font-family:Arial,sans-serif;background:var(--preto);color:var(--branco);}
+header{background:var(--roxo);padding:20px;text-align:center;}
+header h1{margin:0;font-size:2.5rem;letter-spacing:2px;}
+nav{background:var(--cinza);position:sticky;top:0;z-index:1000;}
+nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;}
+nav ul li{position:relative;}
+nav ul li a{display:block;padding:15px 20px;color:var(--branco);text-decoration:none;font-weight:bold;transition:0.3s;}
+nav ul li a:hover{background:var(--roxo-hover);}
+nav ul li ul{display:none;position:absolute;top:50px;left:0;background:var(--cinza);min-width:200px;z-index:1000;}
+nav ul li:hover ul{display:block;}
+nav ul li ul li a{padding:10px 20px;}
+.banner{background:var(--cinza-claro);padding:60px 20px;text-align:center;}
+.banner h2{font-size:2.5rem;color:var(--roxo);margin-bottom:20px;}
+.banner p{font-size:1.2rem;max-width:700px;margin:auto;}
+section{padding:60px 20px;text-align:center;}
+section h2{font-size:2rem;color:var(--roxo);margin-bottom:20px;}
+.produtos-container,.categoria-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:20px;}
+.card{background:var(--cinza-claro);padding:20px;border-radius:10px;transition:transform 0.3s,background 0.3s;}
+.card:hover{background:var(--roxo);transform:translateY(-5px);}
+.card img{max-width:100%;border-radius:5px;margin-top:10px;}
+.btn{display:inline-block;padding:10px 20px;margin-top:15px;background:var(--roxo);color:var(--branco);text-decoration:none;font-weight:bold;border-radius:5px;transition:0.3s;}
+.btn:hover{background:var(--roxo-hover);}
+footer{background:#111;padding:20px;text-align:center;margin-top:40px;font-size:0.9rem;}
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25d366;color:#fff;padding:15px;border-radius:50%;font-size:1.5rem;z-index:1000;text-decoration:none;}
+.hidden{display:none;}
+.container{max-width:600px;margin:50px auto;padding:20px;background:var(--cinza);border-radius:10px;}
+input, select{width:100%;padding:10px;margin:10px 0;border-radius:5px;border:none;}
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Moda Mirae</h1>
-  </header>
+<header><h1>Moda Mirae</h1></header>
 
-  <nav>
+<nav>
+<ul>
+  <li><a href="#inicio">🏡 Início</a></li>
+  <li><a href="#camisas">👕 Camisas Personalizadas</a>
     <ul>
-      <li><a href="#">🏡 Início</a></li>
-      <li><a href="#">👕 Camisas Personalizadas</a>
-        <ul>
-          <li><a href="#">Femininas</a></li>
-          <li><a href="#">Masculinas</a></li>
-          <li><a href="#">Oversized</a></li>
-        </ul>
-      </li>
-      <li><a href="#">🛋 Almofadas Personalizadas</a></li>
-      <li><a href="#">🎄 Coleções Especiais</a></li>
-      <li><a href="#">💸 Promoções</a></li>
-      <li><a href="#">📝 Sobre Nós</a></li>
-      <li><a href="#">📲 Contato</a></li>
-      <li><a href="#">📜 Política de Troca e Entrega</a></li>
+      <li><a href="#camisas-femininas">Femininas</a></li>
+      <li><a href="#camisas-masculinas">Masculinas</a></li>
+      <li><a href="#camisas-oversized">Oversized</a></li>
     </ul>
-  </nav>
+  </li>
+  <li><a href="#almofadas">🛋 Almofadas Personalizadas</a></li>
+  <li><a href="#colecoes">🎄 Coleções Especiais</a></li>
+  <li><a href="#promo">💸 Promoções</a></li>
+  <li><a href="#sobre">📝 Sobre Nós</a></li>
+  <li><a href="#contato">📲 Contato</a></li>
+  <li><a href="#politica">📜 Política de Troca e Entrega</a></li>
+</ul>
+</nav>
 
-  <!-- Banner -->
-  <div class="banner">
-    <h2>Descubra nossas coleções exclusivas!</h2>
-    <p>Peças únicas e temáticas, perfeitas para expressar seu estilo ou presentear alguém especial. Aproveite nossas promoções e novidades.</p>
-    <a href="#promo" class="btn">Confira Promoções</a>
-  </div>
+<!-- Banner -->
+<div class="banner">
+  <h2>Descubra nossas coleções exclusivas!</h2>
+  <p>Peças únicas e temáticas, perfeitas para expressar seu estilo ou presentear alguém especial.</p>
+</div>
 
-  <!-- Início -->
-  <section id="inicio">
-    <h2>Vitrine de Produtos Mais Vendidos</h2>
-    <div class="produtos-container">
-      <div class="card"><h3>Camisa BTS</h3><p>Estampa exclusiva BTS.</p><a href="#" class="btn">Comprar Agora</a></div>
-      <div class="card"><h3>Almofada Natalina</h3><p>Perfeita para decorar sua casa.</p><a href="#" class="btn">Comprar Agora</a></div>
-      <div class="card"><h3>Camisa Oversized</h3><p>Conforto e estilo.</p><a href="#" class="btn">Comprar Agora</a></div>
-    </div>
-  </section>
+<!-- Seções -->
+<section id="inicio">
+<h2>Vitrine de Produtos Mais Vendidos</h2>
+<div class="produtos-container" id="mainProducts"></div>
+</section>
 
-  <!-- Camisas Personalizadas -->
-  <section id="camisas">
-    <h2>👕 Camisas Personalizadas</h2>
-    <p>Expresse seu estilo com exclusividade! Camisas feitas com tecidos de alta qualidade, estampas modernas e conforto. Personalize com frases, fandoms ou designs únicos.</p>
-    <div class="categoria-container">
-      <div class="card"><h3>Femininas</h3><a href="#" class="btn">Comprar</a></div>
-      <div class="card"><h3>Masculinas</h3><a href="#" class="btn">Comprar</a></div>
-      <div class="card"><h3>Oversized</h3><a href="#" class="btn">Comprar</a></div>
-    </div>
-  </section>
+<section id="camisas">
+<h2>👕 Camisas Personalizadas</h2>
+<p>Expresse seu estilo com exclusividade! Camisas de alta qualidade, estampas modernas e conforto.</p>
+<div class="produtos-container" id="camisasContainer"></div>
+</section>
 
-  <!-- Almofadas Personalizadas -->
-  <section id="almofadas">
-    <h2>🛋 Almofadas Personalizadas</h2>
-    <p>Decore com personalidade! Almofadas criativas, temáticas e confortáveis — perfeitas para presentear ou transformar seu cantinho.</p>
-    <div class="produtos-container">
-      <div class="card"><h3>Fandoms</h3><a href="#" class="btn">Comprar</a></div>
-      <div class="card"><h3>Frases</h3><a href="#" class="btn">Comprar</a></div>
-      <div class="card"><h3>Natalinas</h3><a href="#" class="btn">Comprar</a></div>
-    </div>
-  </section>
+<section id="almofadas">
+<h2>🛋 Almofadas Personalizadas</h2>
+<p>Decore com personalidade! Almofadas criativas, temáticas e confortáveis.</p>
+<div class="produtos-container" id="almofadasContainer"></div>
+</section>
 
-  <!-- Coleções Especiais -->
-  <section id="colecoes">
-    <h2>🎄 Coleções Especiais</h2>
-    <p>Peças únicas e temáticas, com edições limitadas. Ideal para quem ama estilo e exclusividade!</p>
-    <div class="produtos-container">
-      <div class="card"><h3>Coleção Natal</h3><a href="#" class="btn">Comprar</a></div>
-      <div class="card"><h3>Coleção BTS</h3><a href="#" class="btn">Comprar</a></div>
-      <div class="card"><h3>Frases Motivacionais</h3><a href="#" class="btn">Comprar</a></div>
-    </div>
-  </section>
+<section id="colecoes">
+<h2>🎄 Coleções Especiais</h2>
+<p>Peças únicas e temáticas, com edições limitadas.</p>
+<div class="produtos-container" id="colecoesContainer"></div>
+</section>
 
-  <!-- Promoções -->
-  <section id="promo">
-    <h2>💸 Promoções</h2>
-    <p>Aproveite descontos incríveis em produtos selecionados! Qualidade e estilo com preço especial — por tempo limitado.</p>
-    <div class="produtos-container">
-      <div class="card"><h3>Camisa BTS</h3><p><del>R$99,90</del> <strong>R$79,90</strong></p><a href="#" class="btn">Comprar</a></div>
-      <div class="card"><h3>Almofada Natalina</h3><p><del>R$49,90</del> <strong>R$39,90</strong></p><a href="#" class="btn">Comprar</a></div>
-    </div>
-  </section>
+<section id="promo">
+<h2>💸 Promoções</h2>
+<div class="produtos-container" id="promoContainer"></div>
+</section>
 
-  <!-- Sobre Nós -->
-  <section id="sobre">
-    <h2>📝 Sobre Nós</h2>
-    <p>A Moda Mirae nasceu com o propósito de vestir pessoas com autenticidade e carinho. Fundada por Roselayne Freitas, empreendedora e influenciadora, nossa marca traz peças personalizadas, criativas e cheias de estilo. Aqui, cada detalhe importa 💜</p>
-    <a href="#" class="btn">Instagram</a>
-    <a href="#" class="btn">TikTok</a>
-  </section>
+<section id="sobre">
+<h2>📝 Sobre Nós</h2>
+<p>A Moda Mirae nasceu com o propósito de vestir pessoas com autenticidade e carinho. Fundada por Roselayne Freitas, nossa marca traz peças personalizadas, criativas e cheias de estilo. Aqui, cada detalhe importa 💜</p>
+</section>
 
-  <!-- Contato -->
-  <section id="contato">
-    <h2>📲 Contato</h2>
-    <p>WhatsApp: <a href="https://wa.me/559999999999" class="btn">Fale Conosco</a></p>
-    <p>E-mail: contato@modamirae.com.br</p>
-    <p>Horário: Seg-Sex 09:00 - 18:00</p>
-    <p>Local: São Paulo, SP</p>
-  </section>
+<section id="contato">
+<h2>📲 Contato</h2>
+<p>WhatsApp: <a href="https://wa.me/559999999999" class="btn">Fale Conosco</a></p>
+<p>E-mail: contato@modamirae.com.br</p>
+<p>Horário: Seg-Sex 09:00 - 18:00</p>
+<p>Local: São Paulo, SP</p>
+</section>
 
-  <!-- Política de Troca e Entrega -->
-  <section id="politica">
-    <h2>📜 Política de Troca e Entrega</h2>
-    <p>Queremos que você tenha a melhor experiência de compra possível. Por isso, criamos uma política clara de trocas, devoluções e prazos de entrega.</p>
-    <ul>
-      <li>Prazos de entrega</li>
-      <li>Como funciona a troca</li>
-      <li>Regras para produtos personalizados</li>
-      <li>Contato para suporte</li>
-    </ul>
-  </section>
+<section id="politica">
+<h2>📜 Política de Troca e Entrega</h2>
+<p>Queremos que você tenha a melhor experiência de compra possível. Por isso, criamos uma política clara de trocas, devoluções e prazos de entrega.</p>
+<ul>
+<li>Prazos de entrega</li>
+<li>Como funciona a troca</li>
+<li>Regras para produtos personalizados</li>
+<li>Contato para suporte</li>
+</ul>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Moda Mirae. Todos os direitos reservados.
-  </footer>
+<footer>&copy; 2025 Moda Mirae. Todos os direitos reservados.</footer>
 
-  <!-- WhatsApp fixo -->
-  <a href="https://wa.me/559999999999" class="whatsapp" target="_blank">📲</a>
+<a href="https://wa.me/553186098752" class="whatsapp" target="_blank">📲</a>
+
+<!-- Login/Admin -->
+<div class="container" id="loginDiv">
+<h2>Admin Login</h2>
+<input type="text" id="username" placeholder="Usuário">
+<input type="password" id="password" placeholder="Senha">
+<button onclick="login()">Entrar</button>
+<p id="loginMsg" style="color:red;"></p>
+</div>
+
+<div class="container hidden" id="adminDiv">
+<h2>Painel Administrativo</h2>
+
+<h3>Adicionar Categoria</h3>
+<input type="text" id="newCategory" placeholder="Nome da Categoria">
+<button onclick="addCategory()">Adicionar Categoria</button>
+<div id="categoryList"></div>
+
+<h3>Adicionar Produto</h3>
+<input type="text" id="productName" placeholder="Nome do Produto">
+<input type="text" id="productDesc" placeholder="Descrição">
+<input type="text" id="productPrice" placeholder="Preço">
+<select id="productCategory">
+<option value="">Selecione Categoria</option>
+</select>
+<input type="file" id="productImage" accept="image/*">
+<button onclick="addProduct()">Adicionar Produto</button>
+<div id="productList"></div>
+
+<button onclick="logout()" style="margin-top:20px;background:red;">Sair</button>
+</div>
+
+<script>
+// Admin fixo
+const adminUser = { username: "admin", password: "123456" };
+
+// Login
+function login(){
+  const u=document.getElementById("username").value;
+  const p=document.getElementById("password").value;
+  if(u===adminUser.username && p===adminUser.password){
+    document.getElementById("loginDiv").classList.add("hidden");
+    document.getElementById("adminDiv").classList.remove("hidden");
+    loadCategories();
+    loadProducts();
+  }else document.getElementById("loginMsg").innerText="Usuário ou senha incorretos!";
+}
+function logout(){
+  document.getElementById("loginDiv").classList.remove("hidden");
+  document.getElementById("adminDiv").classList.add("hidden");
+}
+
+// LocalStorage helpers
+let categories = JSON.parse(localStorage.getItem("categories")||"[]");
+let products = JSON.parse(localStorage.getItem("products")||"[]");
+
+// Adicionar categoria
+function addCategory(){
+  const cat=document.getElementById("newCategory").value.trim();
+  if(cat){ categories.push(cat); localStorage.setItem("categories",JSON.stringify(categories)); renderCategories(); document.getElementById("newCategory").value=""; }
+}
+function renderCategories(){
+  const container=document.getElementById("categoryList");
+  const select=document.getElementById("productCategory");
+  container.innerHTML="<h4>Categorias:</h4>";
+  select.innerHTML='<option value="">Selecione Categoria</option>';
+  categories.forEach(c=>{
+    const div=document.createElement("div"); div.className="card"; div.innerText=c; container.appendChild(div);
+    const option=document.createElement("option"); option.value=c; option.innerText=c; select.appendChild(option);
+  });
+}
+
+// Adicionar produto
+function addProduct(){
+  const name=document.getElementById("productName").value.trim();
+  const desc=document.getElementById("productDesc").value.trim();
+  const price=document.getElementById("productPrice").value.trim();
+  const cat=document.getElementById("productCategory").value;
+  const imgFile=document.getElementById("productImage").files[0];
+  if(name && desc && price && cat && imgFile){
+    const reader=new FileReader();
+    reader.onload=function(e){
+      const product={name,desc,price,category:cat,img:e.target.result};
+      products.push(product);
+      localStorage.setItem("products",JSON.stringify(products));
+      renderProducts();
+      document.getElementById("productName").value="";
+      document.getElementById("productDesc").value="";
+      document.getElementById("productPrice").value="";
+      document.getElementById("productCategory").value="";
+      document.getElementById("productImage").value="";
+    }
+    reader.readAsDataURL(imgFile);
+  }else alert("Preencha todos os campos!");
+}
+
+function renderProducts(){
+  const list=document.getElementById("productList");
+  list.innerHTML="<h4>Produtos:</h4>";
+  products.forEach(p=>{
+    const div=document.createElement("div"); div.className="card";
+    div.innerHTML=`<strong>${p.name}</strong><p>${p.desc}</p><p>R$${p.price}</p><p>Categoria: ${p.category}</p><img src="${p.img}">`;
+    list.appendChild(div);
+  });
+  displayProducts();
+}
+
+// Mostrar produtos nas seções
+function displayProducts(){
+  const main = document.getElementById("mainProducts");
+  const camisas = document.getElementById("camisasContainer");
+  const almofadas = document.getElementById("almofadasContainer");
+  const colecoes = document.getElementById("colecoesContainer");
+  const promo = document.getElementById("promoContainer");
+  [main,camisas,almofadas,colecoes,promo].forEach(d=>d.innerHTML="");
+  products.forEach(p=>{
+    const div=document.createElement("div"); div.className="card";
+    div.innerHTML=`<strong>${p.name}</strong><p>${p.desc}</p><p>R$${p.price}</p><img src="${p.img}">`;
+    if(p.category.toLowerCase().includes("camisa")) camisas.appendChild(div.cloneNode(true));
+    else if(p.category.toLowerCase().includes("almofada")) almofadas.appendChild(div.cloneNode(true));
+    else if(p.category.toLowerCase().includes("coleção")||p.category.toLowerCase().includes("especial")) colecoes.appendChild(div.cloneNode(true));
+    else if(p.category.toLowerCase().includes("promoção")||p.category.toLowerCase().includes("promo")) promo.appendChild(div.cloneNode(true));
+    main.appendChild(div.cloneNode(true));
+  });
+}
+
+// Carregar dados do LocalStorage ao iniciar
+function loadCategories(){ renderCategories(); }
+function loadProducts(){ renderProducts(); }
+displayProducts();
+</script>
 
 </body>
 </html>
