@@ -3,112 +3,263 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moda Mirae - Login</title>
+<title>Moda Mirae</title>
 <style>
 :root {
   --roxo: #6a0dad;
-  --roxo-hover: #8b2be2;
+  --roxo-neon: #d66aff;
   --preto: #000;
-  --cinza: #1a1a1a;
-  --cinza-claro: #2b2b2b;
+  --cinza-claro: #1a1a1a;
   --branco: #fff;
 }
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif;}
-body{background:var(--preto);color:var(--branco);}
-#overlay{
-  position:fixed;top:0;left:0;width:100%;height:100%;background:var(--preto);display:flex;justify-content:center;align-items:center;z-index:1000;flex-direction:column;
+
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: var(--preto);
+  color: var(--branco);
 }
-.container{background:var(--cinza-claro);padding:40px;border-radius:15px;width:350px;max-width:90%;text-align:center;}
-input{width:100%;padding:12px;margin:10px 0;border:none;border-radius:8px;}
-button{width:100%;padding:12px;margin:10px 0;background:var(--roxo);color:var(--branco);border:none;border-radius:8px;cursor:pointer;font-weight:bold;transition:0.3s;}
-button:hover{background:var(--roxo-hover);}
-a{color:var(--roxo);text-decoration:none;font-weight:bold;}
-a:hover{text-decoration:underline;}
-.switch-btn{background:none;color:var(--roxo);border:none;cursor:pointer;text-decoration:underline;margin-top:10px;}
-h2{color:var(--roxo);margin-bottom:20px;}
-.info{margin-top:20px;font-size:0.9rem;}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--cinza-claro);
+}
+header h1 {
+  text-align:center;
+  font-size:3rem;
+  padding:20px 0;
+  margin:0;
+  text-shadow: 0 0 10px var(--roxo-neon);
+}
+
+/* Mega Menu */
+nav {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:10px;
+}
+nav .menu-btn {
+  position: relative;
+  background: var(--roxo);
+  border:none;
+  color: var(--branco);
+  padding:15px 30px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:1.2rem;
+  transition:0.3s;
+  box-shadow:0 0 5px var(--roxo-neon);
+}
+nav .menu-btn:hover {
+  background: var(--roxo-neon);
+  box-shadow:0 0 20px var(--roxo-neon), 0 0 30px var(--roxo-neon);
+  transform:translateY(-3px);
+}
+
+/* Submenu */
+nav .submenu {
+  display:none;
+  position:absolute;
+  top:60px;
+  left:0;
+  background: var(--cinza-claro);
+  border-radius:10px;
+  padding:10px;
+  min-width:200px;
+  text-align:left;
+  z-index:100;
+}
+nav .submenu button {
+  width:100%;
+  margin:5px 0;
+  padding:10px;
+  font-size:1rem;
+}
+
+/* Banner */
+.banner {
+  width:100%;
+  height:400px;
+  background:url('https://via.placeholder.com/1200x400/6a0dad/ffffff?text=Colecao+Exclusiva+de+Natal') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.banner h2 {
+  color: var(--branco);
+  font-size:3rem;
+  text-shadow:0 0 15px var(--roxo-neon);
+}
+
+/* Seções */
+section {
+  padding:50px 20px;
+  text-align:center;
+}
+section h2 {
+  font-size:2.5rem;
+  color: var(--roxo-neon);
+  margin-bottom:30px;
+  text-shadow:0 0 15px var(--roxo-neon);
+}
+
+/* Produtos */
+.produtos-container {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+  gap:25px;
+}
+.card {
+  background: var(--cinza-claro);
+  padding:20px;
+  border-radius:15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align:center;
+}
+.card:hover {
+  transform:translateY(-7px);
+  box-shadow:0 0 15px var(--roxo-neon),0 0 25px var(--roxo-neon);
+}
+.card img {
+  max-width:100%;
+  border-radius:10px;
+  margin-top:15px;
+}
+.card strong {
+  display:block;
+  margin-top:10px;
+  font-size:1.5rem;
+}
+.card p {
+  margin:8px 0;
+  font-size:1.2rem;
+}
+.btn {
+  display:inline-block;
+  padding:15px 30px;
+  margin-top:15px;
+  background:var(--roxo);
+  color:var(--branco);
+  text-decoration:none;
+  font-weight:bold;
+  font-size:1.2rem;
+  border-radius:12px;
+  transition:0.3s;
+  box-shadow:0 0 5px var(--roxo-neon);
+}
+.btn:hover {
+  background: var(--roxo-neon);
+  box-shadow:0 0 20px var(--roxo-neon),0 0 25px var(--roxo-neon);
+  transform:translateY(-3px);
+}
+
+/* Carrinho fixo */
+#carrinho {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background: var(--roxo);
+  padding:15px 25px;
+  border-radius:50px;
+  cursor:pointer;
+  box-shadow:0 0 10px var(--roxo-neon);
+  z-index:1000;
+  color:#fff;
+  font-weight:bold;
+  transition:0.3s;
+}
+#carrinho:hover {
+  box-shadow:0 0 25px var(--roxo-neon);
+}
+
+/* Footer */
+footer {
+  background:#111;
+  padding:40px 20px;
+  text-align:center;
+  font-size:1rem;
+}
+footer a {
+  color:var(--roxo-neon);
+  text-decoration:none;
+}
+footer a:hover {
+  text-decoration:underline;
+}
 </style>
 </head>
 <body>
 
-<!-- Tela de Login/Registro Fullscreen -->
-<div id="overlay">
-  <div class="container" id="loginBox">
-    <h2>Moda Mirae</h2>
-    <div id="loginForm">
-      <input type="text" id="loginUser" placeholder="Usuário">
-      <input type="password" id="loginPass" placeholder="Senha">
-      <button onclick="login()">Entrar</button>
-      <p id="loginMsg" style="color:red;"></p>
-      <button class="switch-btn" onclick="showRegister()">Criar Conta</button>
+<header>
+  <h1>Moda Mirae</h1>
+  <nav>
+    <div class="menu-btn" onmouseover="showSubmenu('roupas')" onmouseout="hideSubmenu('roupas')">Roupas
+      <div class="submenu" id="submenu-roupas">
+        <button onclick="filterProducts('Camisetas')">Camisetas</button>
+        <button onclick="filterProducts('Moletons')">Moletons</button>
+      </div>
     </div>
-    <div id="registerForm" style="display:none;">
-      <input type="text" id="regUser" placeholder="Novo Usuário">
-      <input type="password" id="regPass" placeholder="Senha">
-      <button onclick="register()">Registrar</button>
-      <p id="regMsg" style="color:red;"></p>
-      <button class="switch-btn" onclick="showLogin()">Já tenho conta</button>
+    <div class="menu-btn" onmouseover="showSubmenu('acessorios')" onmouseout="hideSubmenu('acessorios')">Acessórios
+      <div class="submenu" id="submenu-acessorios">
+        <button onclick="filterProducts('Bolsa')">Bolsa</button>
+        <button onclick="filterProducts('Chinelo')">Chinelo</button>
+        <button onclick="filterProducts('Caneca')">Caneca</button>
+        <button onclick="filterProducts('Toalha')">Toalha</button>
+        <button onclick="filterProducts('Canga')">Canga</button>
+        <button onclick="filterProducts('MousePad')">Mouse Pad</button>
+        <button onclick="filterProducts('Almofadas')">Almofadas</button>
+        <button onclick="filterProducts('Necessaire')">Necessaire</button>
+        <button onclick="filterProducts('Kits')">Kits</button>
+      </div>
     </div>
-    <div class="info">
-      <p>Endereço: Nova Lima - MG</p>
-      <p><a href="https://www.instagram.com/moda_mirae/" target="_blank">Instagram</a></p>
+    <div class="menu-btn" onmouseover="showSubmenu('colecoes')" onmouseout="hideSubmenu('colecoes')">Coleções
+      <div class="submenu" id="submenu-colecoes">
+        <button onclick="filterProducts('BTS')">BTS</button>
+        <button onclick="filterProducts('BTS-Membros')">BTS Membros</button>
+        <button onclick="filterProducts('Jikook')">Jikook</button>
+      </div>
     </div>
-  </div>
+    <div class="menu-btn" onclick="scrollToSection('sobre')">Sobre Nós</div>
+    <div class="menu-btn" onclick="scrollToSection('suporte')">Suporte</div>
+  </nav>
+</header>
+
+<div class="banner">
+  <h2>Coleção Exclusiva de Natal</h2>
 </div>
 
-<!-- Conteúdo do site -->
-<div id="siteContent" style="display:none;">
-<header style="background:var(--roxo);padding:20px;text-align:center;">
-<h1>Moda Mirae</h1>
-</header>
-<nav style="background:var(--cinza);padding:10px;text-align:center;">
-<a href="#inicio" style="margin:0 10px;color:var(--branco);text-decoration:none;font-weight:bold;">Início</a>
-<a href="#camisas" style="margin:0 10px;color:var(--branco);text-decoration:none;font-weight:bold;">Camisas</a>
-<a href="#almofadas" style="margin:0 10px;color:var(--branco);text-decoration:none;font-weight:bold;">Almofadas</a>
-<a href="#colecoes" style="margin:0 10px;color:var(--branco);text-decoration:none;font-weight:bold;">Coleções</a>
-<a href="#promo" style="margin:0 10px;color:var(--branco);text-decoration:none;font-weight:bold;">Promoções</a>
-</nav>
-<section id="inicio" style="padding:40px;text-align:center;">
-<h2>Bem-vindo à Moda Mirae!</h2>
-<p>Explore nossas coleções exclusivas.</p>
+<section id="produtos">
+  <h2>Produtos em Destaque</h2>
+  <div class="produtos-container" id="produtosContainer"></div>
 </section>
-</div>
+
+<section id="sobre">
+  <h2>Sobre Nós</h2>
+  <p>A Moda Mirae nasceu com o propósito de vestir pessoas com autenticidade e carinho. Fundada por Roselayne Freitas, nossa marca traz peças personalizadas, criativas e cheias de estilo. Aqui, cada detalhe importa 💜</p>
+</section>
+
+<section id="suporte">
+  <h2>Suporte</h2>
+  <p>WhatsApp: <a href="https://wa.me/553186098752">+55 31 8609-8752</a></p>
+  <p>Email: <a href="mailto:modamirae@modamirae.com">modamirae@modamirae.com</a></p>
+</section>
+
+<footer>
+  &copy; 2025 Moda Mirae | <a href="https://www.instagram.com/moda_mirae/">Instagram</a>
+</footer>
+
+<div id="carrinho">🛍 Carrinho (<span id="contadorCarrinho">0</span>)</div>
 
 <script>
-// Simulação de banco de dados LocalStorage
-let users = JSON.parse(localStorage.getItem("users") || '[]');
-
-// Funções de exibição
-function showRegister(){document.getElementById("loginForm").style.display="none";document.getElementById("registerForm").style.display="block";}
-function showLogin(){document.getElementById("registerForm").style.display="none";document.getElementById("loginForm").style.display="block";}
-
-// Registrar usuário
-function register(){
-  const user = document.getElementById("regUser").value.trim();
-  const pass = document.getElementById("regPass").value.trim();
-  const msg = document.getElementById("regMsg");
-  if(!user || !pass){msg.innerText="Preencha todos os campos!";return;}
-  if(users.find(u=>u.username===user)){msg.innerText="Usuário já existe!";return;}
-  users.push({username:user,password:pass});
-  localStorage.setItem("users",JSON.stringify(users));
-  msg.style.color="green";msg.innerText="Conta criada com sucesso!";
-}
-
-// Login
-function login(){
-  const user = document.getElementById("loginUser").value.trim();
-  const pass = document.getElementById("loginPass").value.trim();
-  const msg = document.getElementById("loginMsg");
-  const found = users.find(u=>u.username===user && u.password===pass);
-  if(found){
-    document.getElementById("overlay").style.display="none";
-    document.getElementById("siteContent").style.display="block";
-  }else msg.innerText="Usuário ou senha incorretos!";
-}
-</script>
-
-</body>
-</html>
-
-
-
+// Produtos ilustrativos
+const produtos = [
+  {nome:"Camisa BTS",categoria:"Camisetas",preco:"R$99,90",img:"https://via.placeholder.com/250x250/6a0dad/ffffff?text=Camisa+BTS"},
+  {nome:"Moletom Rosa",categoria:"Moletons",preco:"R$149,90",img:"https://via.placeholder.com/250x250/6a0dad/ffffff?text=Moletom+Rosa"},
+  {nome:"Bolsa Fashion",categoria:"Bolsa",preco:"R$79,90",img:"https://via.placeholder.com/250x250/6a0dad/ffffff?text=Bolsa"},
+  {nome:"Chinelo Estampado",categoria:"Chinelo",preco:"R$49,90
