@@ -1,141 +1,114 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Moda Mirae</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moda Mirae - Login</title>
 <style>
-:root{
-  --roxo:#6a0dad; --roxo-hover:#8b2be2; --preto:#000; --cinza:#1a1a1a; --cinza-claro:#2b2b2b; --branco:#fff;
-  --max-width:1200px;
+:root {
+  --roxo: #6a0dad;
+  --roxo-hover: #8b2be2;
+  --preto: #000;
+  --cinza: #1a1a1a;
+  --cinza-claro: #2b2b2b;
+  --branco: #fff;
 }
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--preto);color:var(--branco);-webkit-font-smoothing:antialiased}
-.container{max-width:var(--max-width);margin:0 auto;padding:0 16px}
-header{background:var(--roxo);padding:18px 0;text-align:center}
-header h1{margin:0;font-size:28px;letter-spacing:2px}
-nav{background:var(--cinza);position:sticky;top:0;z-index:30}
-nav .navwrap{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px}
-nav a{color:var(--branco);text-decoration:none;padding:10px 14px;font-weight:600;border-radius:6px}
-nav a:hover{background:var(--roxo-hover)}
-.banner{background:var(--cinza-claro);text-align:center;padding:56px 16px}
-.banner h2{color:var(--roxo);margin:0 0 12px;font-size:28px}
-.banner p{max-width:820px;margin:0 auto;color:#eee}
-.section{padding:48px 16px;text-align:center}
-.section h2{color:var(--roxo);margin-bottom:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px}
-.card{background:var(--cinza-claro);padding:14px;border-radius:10px;transition:transform .2s,background .2s}
-.card:hover{transform:translateY(-6px);background:var(--roxo)}
-.card img{width:100%;height:150px;object-fit:cover;border-radius:6px}
-.btn{display:inline-block;padding:10px 14px;background:var(--roxo);color:var(--branco);text-decoration:none;border-radius:8px;font-weight:700;margin-top:8px}
-footer{background:#0d0d0d;padding:22px;text-align:center;color:#bbb}
-
-/* WhatsApp fixed */
-.whatsapp{position:fixed;right:20px;bottom:20px;background:#25d366;padding:14px;border-radius:50%;z-index:40;text-decoration:none;color:#fff;font-size:20px}
-
-/* Login full screen overlay */
-#overlay{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:60;display:flex;align-items:center;justify-content:center}
-.auth-card{width:100%;max-width:420px;background:linear-gradient(180deg,var(--cinza),#151515);padding:22px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
-.auth-card h3{margin:0 0 8px;color:var(--roxo)}
-.input{width:100%;padding:10px;border-radius:8px;border:none;margin:8px 0;background:#222;color:#fff}
-.small{font-size:13px;color:#ddd;margin-top:8px}
-.linkish{background:none;border:0;color:var(--roxo);cursor:pointer;font-weight:700;padding:0}
-
-/* Responsive */
-@media (max-width:520px){
-  .banner h2{font-size:20px}
-  header h1{font-size:20px}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif;}
+body{background:var(--preto);color:var(--branco);}
+#overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;background:var(--preto);display:flex;justify-content:center;align-items:center;z-index:1000;flex-direction:column;
 }
+.container{background:var(--cinza-claro);padding:40px;border-radius:15px;width:350px;max-width:90%;text-align:center;}
+input{width:100%;padding:12px;margin:10px 0;border:none;border-radius:8px;}
+button{width:100%;padding:12px;margin:10px 0;background:var(--roxo);color:var(--branco);border:none;border-radius:8px;cursor:pointer;font-weight:bold;transition:0.3s;}
+button:hover{background:var(--roxo-hover);}
+a{color:var(--roxo);text-decoration:none;font-weight:bold;}
+a:hover{text-decoration:underline;}
+.switch-btn{background:none;color:var(--roxo);border:none;cursor:pointer;text-decoration:underline;margin-top:10px;}
+h2{color:var(--roxo);margin-bottom:20px;}
+.info{margin-top:20px;font-size:0.9rem;}
 </style>
 </head>
 <body>
 
-<!-- FULLSCREEN LOGIN OVERLAY -->
-<div id="overlay" aria-hidden="false">
-  <div class="auth-card" id="authCard">
-    <h3>Entrar na Moda Mirae</h3>
-
+<!-- Tela de Login/Registro Fullscreen -->
+<div id="overlay">
+  <div class="container" id="loginBox">
+    <h2>Moda Mirae</h2>
     <div id="loginForm">
-      <input class="input" id="loginUser" placeholder="Usuário (ex: joao)" />
-      <input class="input" id="loginPass" type="password" placeholder="Senha" />
-      <button class="btn" onclick="doLogin()">Entrar</button>
-      <p class="small">Não tem conta? <button class="linkish" onclick="showRegister()">Criar conta</button></p>
-      <p id="authMsg" class="small" style="color:#ffb3b3"></p>
+      <input type="text" id="loginUser" placeholder="Usuário">
+      <input type="password" id="loginPass" placeholder="Senha">
+      <button onclick="login()">Entrar</button>
+      <p id="loginMsg" style="color:red;"></p>
+      <button class="switch-btn" onclick="showRegister()">Criar Conta</button>
     </div>
-
-    <div id="registerForm" style="display:none">
-      <h3>Criar Conta</h3>
-      <input class="input" id="regUser" placeholder="Usuário (ex: maria)" />
-      <input class="input" id="regEmail" type="email" placeholder="E-mail" />
-      <input class="input" id="regPass" type="password" placeholder="Senha (mín 6)" />
-      <p class="small">Você será cadastrado como <strong>cliente</strong>. Para contas admin será necessário um procedimento separado.</p>
-      <button class="btn" onclick="doRegister()">Criar conta</button>
-      <p class="small">Já tem conta? <button class="linkish" onclick="showLogin()">Fazer login</button></p>
-      <p id="regMsg" class="small" style="color:#b3ffda"></p>
+    <div id="registerForm" style="display:none;">
+      <input type="text" id="regUser" placeholder="Novo Usuário">
+      <input type="password" id="regPass" placeholder="Senha">
+      <button onclick="register()">Registrar</button>
+      <p id="regMsg" style="color:red;"></p>
+      <button class="switch-btn" onclick="showLogin()">Já tenho conta</button>
+    </div>
+    <div class="info">
+      <p>Endereço: Nova Lima - MG</p>
+      <p><a href="https://www.instagram.com/moda_mirae/" target="_blank">Instagram</a></p>
     </div>
   </div>
 </div>
 
-<header><div class="container"><h1>Moda Mirae</h1></div></header>
-
-<nav>
-  <div class="navwrap container">
-    <a href="#inicio">🏡 Início</a>
-    <a href="#camisas">👕 Camisas</a>
-    <a href="#almofadas">🛋 Almofadas</a>
-    <a href="#colecoes">🎄 Coleções</a>
-    <a href="#promo">💸 Promoções</a>
-    <a href="#sobre">📝 Sobre Nós</a>
-    <a href="https://www.instagram.com/moda_mirae/" target="_blank" rel="noopener">Instagram</a>
-    <a href="#contato">📲 Contato</a>
-  </div>
+<!-- Conteúdo do site -->
+<div id="siteContent" style="display:none;">
+<header style="background:var(--roxo);padding:20px;text-align:center;">
+<h1>Moda Mirae</h1>
+</header>
+<nav style="background:var(--cinza);padding:10px;text-align:center;">
+<a href="#inicio" style="margin:0 10px;color:var(--branco);text-decoration:none;font-weight:bold;">Início</a>
+<a href="#camisas" style="margin:0 10px;color:var(--branco);text-decoration:none;font-weight:bold;">Camisas</a>
+<a href="#almofadas" style="margin:0 10px;color:var(--branco);text-decoration:none;font-weight:bold;">Almofadas</a>
+<a href="#colecoes" style="margin:0 10px;color:var(--branco);text-decoration:none;font-weight:bold;">Coleções</a>
+<a href="#promo" style="margin:0 10px;color:var(--branco);text-decoration:none;font-weight:bold;">Promoções</a>
 </nav>
-
-<div class="banner container">
-  <h2>Descubra nossas coleções exclusivas!</h2>
-  <p>Peças únicas e temáticas — expressividade, conforto e design com carinho.</p>
+<section id="inicio" style="padding:40px;text-align:center;">
+<h2>Bem-vindo à Moda Mirae!</h2>
+<p>Explore nossas coleções exclusivas.</p>
+</section>
 </div>
 
-<!-- INÍCIO -->
-<section id="inicio" class="section container">
-  <h2>Vitrine — Mais Vendidos</h2>
-  <div id="mainProducts" class="grid"></div>
-</section>
+<script>
+// Simulação de banco de dados LocalStorage
+let users = JSON.parse(localStorage.getItem("users") || '[]');
 
-<!-- CAMISAS -->
-<section id="camisas" class="section container">
-  <h2>👕 Camisas Personalizadas</h2>
-  <p>Expresse seu estilo com exclusividade — personalize frases, fandoms e estampas.</p>
-  <div id="camisasGrid" class="grid"></div>
-</section>
+// Funções de exibição
+function showRegister(){document.getElementById("loginForm").style.display="none";document.getElementById("registerForm").style.display="block";}
+function showLogin(){document.getElementById("registerForm").style.display="none";document.getElementById("loginForm").style.display="block";}
 
-<!-- ALMOFADAS -->
-<section id="almofadas" class="section container">
-  <h2>🛋 Almofadas Personalizadas</h2>
-  <div id="almofadasGrid" class="grid"></div>
-</section>
+// Registrar usuário
+function register(){
+  const user = document.getElementById("regUser").value.trim();
+  const pass = document.getElementById("regPass").value.trim();
+  const msg = document.getElementById("regMsg");
+  if(!user || !pass){msg.innerText="Preencha todos os campos!";return;}
+  if(users.find(u=>u.username===user)){msg.innerText="Usuário já existe!";return;}
+  users.push({username:user,password:pass});
+  localStorage.setItem("users",JSON.stringify(users));
+  msg.style.color="green";msg.innerText="Conta criada com sucesso!";
+}
 
-<!-- COLEÇÕES -->
-<section id="colecoes" class="section container">
-  <h2>🎄 Coleções Especiais</h2>
-  <div id="colecoesGrid" class="grid"></div>
-</section>
+// Login
+function login(){
+  const user = document.getElementById("loginUser").value.trim();
+  const pass = document.getElementById("loginPass").value.trim();
+  const msg = document.getElementById("loginMsg");
+  const found = users.find(u=>u.username===user && u.password===pass);
+  if(found){
+    document.getElementById("overlay").style.display="none";
+    document.getElementById("siteContent").style.display="block";
+  }else msg.innerText="Usuário ou senha incorretos!";
+}
+</script>
 
-<section id="promo" class="section container">
-  <h2>💸 Promoções</h2>
-  <div id="promoGrid" class="grid"></div>
-</section>
+</body>
+</html>
 
-<section id="sobre" class="section container">
-  <h2>📝 Sobre Nós</h2>
-  <p>Moda Mirae — fundada por Roselayne Freitas. Peças personalizadas com carinho. 💜</p>
-</section>
-
-<section id="contato" class="section container">
-  <h2>📲 Contato</h2>
-  <p><a class="btn" href="https://wa.me/553186098752" target="_blank" rel="noopener">WhatsApp: +55 31 8609-8752</a></p>
-  <p>E-mail: modamirae@modamirae.com</p>
-  <p>Endereço: Nova Lima - MG</p>
- 
 
 
